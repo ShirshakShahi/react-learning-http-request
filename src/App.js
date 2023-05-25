@@ -36,7 +36,7 @@ const App = () => {
       setError(error.message);
     }
     setIsLoading(false);
-  }, []
+  },[]
   )
 
   useEffect(() => {
