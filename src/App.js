@@ -15,20 +15,24 @@ function App() {
     try {
       const response = await fetch('https://react-http-796ec-default-rtdb.firebaseio.com/movies.json');
       if (!response.ok) {
-        throw new Error('Something went wrong!');
+        throw new Error('Something went wrong hahhahahha!');
       }
 
       const data = await response.json();
 
-      const transformedMovies = data.results.map((movieData) => {
-        return {
-          id: movieData.episode_id,
-          title: movieData.title,
-          openingText: movieData.opening_crawl,
-          releaseDate: movieData.release_date,
-        };
-      });
-      setMovies(transformedMovies);
+      const loadedMovies = [];
+
+      for (const key in data) {
+        loadedMovies.push({
+          id: key,
+          title: data[key].title,
+          openingText: data[key].openingText,
+          releaseDate: data[key].releaseDate,
+        })
+
+      }
+
+      setMovies(loadedMovies);
     } catch (error) {
       setError(error.message);
     }
